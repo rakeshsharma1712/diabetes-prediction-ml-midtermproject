@@ -1,0 +1,13 @@
+
+{
+  "AWSEBDockerrunVersion": "1",
+  "Image": {
+    "Name": "rakeshsharma1712/diabetes-prediction:v1",
+    "Update": "true"
+  },
+  "Ports": [
+    {
+      "ContainerPort": "9696"
+    }
+  ]
+}

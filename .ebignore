@@ -1,0 +1,8 @@
+
+Dockerfile
+data/
+diabetes_env/
+notebooks/
+__pycache__/
+.git/
+.ipynb_checkpoints/
