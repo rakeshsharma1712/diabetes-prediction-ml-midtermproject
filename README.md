@@ -373,9 +373,15 @@ The deployed API was successfully tested using a sample patient input and return
 
 **Purpose:** Machine Learning Zoomcamp – Midterm Project
 
-## AWS Deployment Demo Video
+## AWS Deployment Demo
 
-This video demonstrates the end-to-end testing of the Diabetes Prediction API deployed on AWS Elastic Beanstalk.
+The following video demonstrates the end-to-end testing of the Diabetes Prediction API deployed on AWS Elastic Beanstalk.
+
+### Video Demonstration
+
+[![Watch AWS Diabetes Prediction API Demo](https://img.youtube.com/vi/cssQyGtI-9Y/0.jpg)](https://youtu.be/cssQyGtI-9Y)
+
+**[▶ Watch AWS Diabetes Prediction API Demo on YouTube](https://youtu.be/cssQyGtI-9Y)**
 
 ### Demo Highlights
 
@@ -384,8 +390,5 @@ This video demonstrates the end-to-end testing of the Diabetes Prediction API de
 - Generating diabetes risk predictions using the deployed XGBoost model.
 - Receiving the diabetes probability and risk classification in the PowerShell terminal.
 
-### Watch the Demo
-
-[▶ Watch AWS Diabetes Prediction API Demo](videos/aws-diabetes-api-demo.mp4)
-
 **Note:** This video was recorded while the AWS Elastic Beanstalk environment was active. The environment was subsequently terminated to avoid ongoing AWS infrastructure costs. The video is retained as deployment evidence.
+
