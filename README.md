@@ -93,8 +93,8 @@ The tuned XGBoost model achieved the best validation ROC-AUC of approximately 0.
 
 The notebook's test evaluation results were:
 
-- Test ROC-AUC: 0.8206
-- Test Accuracy: 74.35%
+- Test ROC-AUC: 0.8222
+- Test Accuracy: 74.46%
 
 The validation and test ROC-AUC scores are relatively close, indicating consistent performance on these data splits.
 
