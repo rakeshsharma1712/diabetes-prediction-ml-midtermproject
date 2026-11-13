@@ -8,6 +8,12 @@ A machine learning classification model is developed using the Diabetes Health I
 
 **Objective:** Predict whether an individual is likely to have diabetes based on selected health indicators.
 
+**Problem Statement:** The goal is to build a binary classification model
+that identifies individuals who may be at risk of diabetes based on
+demographic information and health-related indicators. This can help
+demonstrate how machine learning techniques can be applied to public
+health data for preliminary risk assessment.
+
 > Disclaimer: This project is developed for educational purposes only. Predictions should not be considered medical advice or a clinical diagnosis.
 
 ## 2. Dataset
