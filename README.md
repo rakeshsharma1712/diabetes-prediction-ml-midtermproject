@@ -218,7 +218,7 @@ models/xgb_tuned_eta_0_1_depth_4_min_child_60.bin
 Start the Flask application:
 
 ```powershell
-python predict.py
+python -m pipenv run python predict.py
 ```
 
 The API runs on:
@@ -261,7 +261,7 @@ You can test the prediction API using **PowerShell**
 1. Start the Flask application:
 
    ```powershell
-   python predict.py
+   python -m pipenv run python predict.py
    ```
 
 2. Open another PowerShell terminal.
