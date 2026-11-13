@@ -254,6 +254,43 @@ http://127.0.0.1:9696/predict
     "bmi": 36.0
 }
 ```
+### How to Test the API
+
+You can test the prediction API using **PowerShell**
+
+1. Start the Flask application:
+
+   ```powershell
+   python predict.py
+   ```
+
+2. Open another PowerShell terminal.
+3. Execute the following command:
+
+   ```powershell
+   $body = @{
+       genhlth = "fair"
+       highbp = "high_bp"
+       age = "80"
+       highchol = "no_high_col"
+       diffwalk = "yes"
+       income = "15,000_to_20,000"
+       heartdiseaseorattack = "yes"
+       education = "high_school_graduate_/_ged"
+       physactivity = "no"
+       physhlth = 15.0
+       bmi = 36.0
+   } | ConvertTo-Json
+
+   Invoke-RestMethod -Uri "http://127.0.0.1:9696/predict" `
+       -Method Post `
+       -Body $body `
+       -ContentType "application/json"
+   ```
+
+4. The prediction response will be displayed in PowerShell.
+
+**Note:** Ensure that the Flask application is running before sending the API request. The categorical input values must match the encoding used during model training.
 
 ### Sample Response
 
