@@ -305,15 +305,19 @@ The probability is illustrative and may vary depending on the trained model.
 
 ## 10. Docker Deployment
 
-### Build Docker Image
+Docker is used to containerize the Flask prediction API along with its required dependencies and trained model.
 
-Run from the project root:
+**Note:** Pipenv is not required for Docker deployment. Docker installs the dependencies using `requirements.txt` as defined in the Dockerfile.
+
+### 10.1 Build Docker Image
+
+Run the following command from the project root directory:
 
 ```powershell
 docker build -t diabetes-prediction:v1 .
 ```
 
-### Run Docker Container
+### 10.2 Run Local Docker Container
 
 ```powershell
 docker run -d --name diabetes-container -p 9697:9696 diabetes-prediction:v1
@@ -321,36 +325,102 @@ docker run -d --name diabetes-container -p 9697:9696 diabetes-prediction:v1
 
 The API will be available at:
 
-```text
-http://127.0.0.1:9697/predict
+`http://127.0.0.1:9697/predict`
+
+### 10.3 Test Local Docker API
+
+Use PowerShell to test the prediction endpoint:
+
+```powershell
+$body = @{
+    genhlth = "fair"
+    highbp = "high_bp"
+    age = "80"
+    highchol = "no_high_col"
+    diffwalk = "yes"
+    income = "15,000_to_20,000"
+    heartdiseaseorattack = "yes"
+    education = "high_school_graduate_/_ged"
+    physactivity = "no"
+    physhlth = 15.0
+    bmi = 36.0
+} | ConvertTo-Json
+
+Invoke-RestMethod -Uri "http://127.0.0.1:9697/predict" `
+    -Method Post `
+    -Body $body `
+    -ContentType "application/json"
 ```
 
-### Docker Hub
+### 10.4 Docker Hub
 
 Docker Hub repository:
 
-https://hub.docker.com/r/rakeshsharma1712/diabetes-prediction
+[https://hub.docker.com/r/rakeshsharma1712/diabetes-prediction](https://hub.docker.com/r/rakeshsharma1712/diabetes-prediction)
 
-Pull the image:
+**Push the Docker Image to Docker Hub**
+
+After building the image, tag and push it:
+
+```powershell
+docker tag diabetes-prediction:v1 rakeshsharma1712/diabetes-prediction:v1
+
+docker push rakeshsharma1712/diabetes-prediction:v1
+```
+
+**Pull the Docker Image**
 
 ```powershell
 docker pull rakeshsharma1712/diabetes-prediction:v1
 ```
 
-Run the pulled image:
+**Run the Docker Hub Image**
 
 ```powershell
 docker run -d --name diabetes-hub-test -p 9698:9696 rakeshsharma1712/diabetes-prediction:v1
 ```
 
-The API can then be tested at:
+The API will be available at:
 
-```text
-http://127.0.0.1:9698/predict
+`http://127.0.0.1:9698/predict`
+
+### 10.5 Test Docker Hub API
+
+Use the following PowerShell command:
+
+```powershell
+Invoke-RestMethod -Uri "http://127.0.0.1:9698/predict" `
+    -Method Post `
+    -Body $body `
+    -ContentType "application/json"
+```
+
+### Expected Response
+
+```json
+{
+    "diabetes probability": 0.8415,
+    "diabetes_risk": true
+}
+```
+
+The probability is illustrative and may vary depending on the trained model and Docker image version.
+
+**Note:** If a container with the same name already exists, remove the old container before running a new one:
+
+```powershell
+docker rm -f diabetes-container
+```
+
+For the Docker Hub container, use:
+
+```powershell
+docker rm -f diabetes-hub-test
 ```
 
 
-## 12. AWS Elastic Beanstalk Deployment
+
+## 11. AWS Elastic Beanstalk Deployment
 
 The Flask prediction API was successfully deployed on AWS Elastic Beanstalk using a Docker image hosted on Docker Hub.
 
@@ -390,7 +460,7 @@ The deployed API was successfully tested using a sample patient input and return
 - EC2 instance status verified as `Ok`.
 
 
-## 13. Technologies Used
+## 12. Technologies Used
 
 - Python
 - Pandas and NumPy
@@ -402,15 +472,13 @@ The deployed API was successfully tested using a sample patient input and return
 - Docker
 - Docker Hub
 
-## 14. Future Enhancements
+## 13. Future Enhancements
 
-- Deploy the prediction API to AWS Elastic Beanstalk.
 - Improve model performance through additional feature engineering and tuning.
-- Add input validation and error handling.
 - Develop a user-friendly web interface.
 - Monitor model performance and prediction quality.
 
-## 15. Author
+## 14. Author
 
 **Project:** Diabetes Prediction Using Machine Learning
 
