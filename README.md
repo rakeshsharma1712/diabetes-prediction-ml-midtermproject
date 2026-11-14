@@ -195,7 +195,7 @@ pip install -r requirements.txt
 Run the following command from the project root directory:
 
 ```powershell
-python train.py
+python -m pipenv run python train.py
 ```
 
 The training script performs the following tasks:
